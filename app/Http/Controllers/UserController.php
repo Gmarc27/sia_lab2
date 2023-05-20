@@ -12,14 +12,14 @@ $this->request = $request;
 }
     public function UserGetAll(){
         $users = User::all();
-        return response()->json(['data' => $users], 200);
+        return response()->json(['data' => $users, 'Site' => 2], 200);
     
     }
     public function userShowID($id)
     {
         //
         $users = User::findOrFail($id);
-        return response()->json(['data' => $users], 200);
+        return response()->json(['data' => $users, 'Site' => 2], 200);
         
     }
     public function userAdd(Request $request ){
@@ -31,7 +31,7 @@ $this->request = $request;
         ];
         $this->validate($request,$rules);
         $users = User::create($request->all());
-        return response()->json(['data' => $users], 200);
+        return response()->json(['data' => $users, 'Site' => 2], 200);
        
 }
     public function userUpdate(Request $request,$id)
@@ -60,5 +60,5 @@ public function userDelete($id)
  $user = User::findOrFail($id);
  $user = User::where('studentID', $id)->first();
  $user->delete();
- return response()->json(['This user is deleted' => $user], 200);
+ return response()->json(['This user is deleted' => $user, 'Site' => 2], 200);
 }}
